@@ -103,6 +103,7 @@ This last step will show you how to create a GitHub Issue to track the work that
 4. Click **Submit new issue**.
 5. To view the your issue, click **Issues** in the top navigation bar of your repository.
 6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
+7. to just chek
 
 <footer>
 
