@@ -1,23 +1,23 @@
-
 from flask import request, render_template, make_response
-
 from server.webapp import flaskapp, cursor
 from server.models import Book
-
 
 @flaskapp.route('/')
 def index():
     name = request.args.get('name')
     author = request.args.get('author')
-    read = bool(request.args.get('read'))
+    read = request.args.get('read', type=bool)
 
+    # Validate and sanitize user inputs to prevent malicious input
     if name:
+        name = name.strip()  # Removing leading/trailing spaces
         cursor.execute(
-            "SELECT * FROM books WHERE name LIKE :name", {'name': f"%{name}%"}
+            "SELECT * FROM books WHERE name LIKE :name", {'name': f"%{name}%" }
         )
         books = [Book(*row) for row in cursor]
 
     elif author:
+        author = author.strip()  # Removing leading/trailing spaces
         cursor.execute(
             "SELECT * FROM books WHERE author LIKE :author", {'author': f"%{author}%"}
         )
